@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alok Das – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="D:\Coding\alokdas.github.io\style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="nav-left">
+      <span class="logo">Alok Das</span>
+    </div>
+    <nav class="nav-right">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">
+        GitHub
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-text">
+        <p class="hero-tag">Hi, I’m Alok 👋</p>
+        <h1>Software engineer who enjoys clean code and practical systems.</h1>
+        <p class="hero-sub">
+          I’ve worked on production banking systems at IDFC FIRST Bank and now study Computer Science in Sydney,
+          focusing on data engineering, backend services, and distributed systems.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="#contact" class="btn ghost">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-gradient"></div>
+        <div class="hero-info">
+          <h2>Currently</h2>
+          <p>CS student in Sydney, experimenting with systems, data, and AI.</p>
+          <ul>
+            <li>• Parallel & distributed computing</li>
+            <li>• Data engineering & analytics</li>
+            <li>• Backend & APIs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2 class="section-title">About me</h2>
+      <p class="section-text">
+        I’m a software engineer with experience in Java + Spring Boot microservices, Kafka, and cloud-native
+        architectures from my time at IDFC FIRST Bank. I like building pipelines, APIs, and tools that are easy
+        to reason about and maintain. At university I’m deepening my skills in data engineering, large-scale
+        networks, and statistical learning.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-text">
+          This list is generated from a JavaScript array in <code>script.js</code>. Add a new object there to
+          show another project.
+        </p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="data">Data</button>
+        <button class="filter-btn" data-filter="systems">Systems</button>
+      </div>
+
+      <div id="project-grid" class="grid"></div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-text">
+        Work where I built real systems in production and learned how to ship safely at scale.
+      </p>
+
+      <div class="experience-grid">
+        <!-- Application Engineer -->
+        <article class="exp-card">
+          <header class="exp-header">
+            <div>
+              <h3 class="exp-role">Application Engineer</h3>
+              <p class="exp-company">IDFC FIRST Bank · India</p>
+            </div>
+            <span class="exp-tag">Jul 2022 – Jul 2024</span>
+          </header>
+
+          <p class="exp-period">Full-time · Digital-first retail banking platform</p>
+
+          <ul class="exp-points">
+            <li>Developed salary, savings account, and NRI onboarding journeys using Java Spring Boot microservices.</li>
+            <li>Used Kafka and event-driven patterns to make data processing async and reduce API response times.</li>
+            <li>Designed AWS Lambda–based flows for event-driven tasks to improve efficiency and cost.</li>
+            <li>Optimised bulk-upload APIs with batch processing to speed up large dataset operations.</li>
+            <li>Implemented CI/CD and tracing to improve deployment frequency and visibility into production issues.</li>
+            <li>Built KYC video verification flows and a custom load balancer to distribute traffic across vendors.</li>
+            <li>Refactored legacy services to be more modular and readable, simplifying maintenance.</li>
+          </ul>
+
+          <div class="exp-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">Kafka</span>
+            <span class="tech-pill">AWS Lambda</span>
+            <span class="tech-pill">Docker</span>
+            <span class="tech-pill">CI/CD</span>
+          </div>
+        </article>
+
+        <!-- Management Trainee -->
+        <article class="exp-card">
+          <header class="exp-header">
+            <div>
+              <h3 class="exp-role">Management Trainee</h3>
+              <p class="exp-company">IDFC FIRST Bank · India</p>
+            </div>
+            <span class="exp-tag">2021 – 2022</span>
+          </header>
+
+          <p class="exp-period">Graduate program · Engineering track</p>
+
+          <ul class="exp-points">
+            <li>Wrote unit tests with JUnit that reflected real customer journeys for higher logic coverage.</li>
+            <li>Helped design and build REST APIs for retail banking features.</li>
+            <li>Contributed to the Offer Mart system to decide which customers were eligible for cross-sell offers.</li>
+            <li>Worked with senior engineers to understand production issues through logs and traces.</li>
+          </ul>
+
+          <div class="exp-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">JUnit</span>
+            <span class="tech-pill">REST APIs</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Languages</h3>
+          <p>Java, Python, C, SQL, JavaScript</p>
+        </div>
+        <div class="skill-card">
+          <h3>Backend & Data</h3>
+          <p>Spring Boot, PostgreSQL, REST APIs, data pipelines, message queues, Kafka</p>
+        </div>
+        <div class="skill-card">
+          <h3>Tools</h3>
+          <p>Git, Linux, Docker, AWS, VS Code, Jupyter</p>
+        </div>
+        <div class="skill-card">
+          <h3>Other</h3>
+          <p>Microservices, cloud-native patterns, parallel programming, distributed systems</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-text">
+        Want to talk about a project, internship, or just say hi?
+      </p>
+
+      <div class="contact-card">
+        <p class="contact-title">Let’s build something together.</p>
+        <p class="contact-sub">
+          The fastest way to reach me is by email, but you can also find me on GitHub and LinkedIn.
+        </p>
+
+        <div class="contact-actions">
+          <a href="mailto:alokdas20000@gmail.com" class="btn primary">Email me at alokdas20000@gmail.com</a>
+          <a href="https://github.com/Razer256g4" target="_blank" class="btn ghost">
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/alokdas256g4/" target="_blank" class="btn ghost">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Alok Das. Built with HTML, CSS, and JavaScript.</p>
+  </footer>
+
+  <script src="D:\Coding\alokdas.github.io\script.js"></script>
+</body>
+</html>
