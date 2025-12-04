@@ -7,7 +7,7 @@ const projects = [
     description:
       "End-to-end pipeline using public Australian energy datasets, PostgreSQL, and visual dashboards.",
     tech: ["Python", "PostgreSQL", "Streamlit", "MQTT", "Docker"],
-    repo: "https://github.com/YOUR_GITHUB_USERNAME/aus-renewable-energy-analytics",
+    repo: "https://github.com/Razer256g4/Aus-renewabl-energy-analytics.gits",
     demo: ""
   },
   {
@@ -27,8 +27,8 @@ const projects = [
     description:
       "This portfolio: responsive layout, dynamic projects, and a calm visual design.",
     tech: ["HTML", "CSS", "JavaScript"],
-    repo: "https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io",
-    demo: "https://YOUR_GITHUB_USERNAME.github.io"
+    repo: "https://github.com/Razer256g4/razer256g4.github.io",
+    demo: "https://razer256g4.github.io"
   }
 ];
 
