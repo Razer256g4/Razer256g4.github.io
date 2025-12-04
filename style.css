@@ -516,3 +516,75 @@ main {
     align-items: stretch;
   }
 }
+/* RUNNING DOG SPRITE */
+.dog-runner {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  width: 16px;   /* one frame width in the sprite sheet */
+  height: 16px;  /* one frame height */
+  background-image: url("dog-sprite.png"); /* path to your sprite sheet */
+  background-repeat: no-repeat;
+  background-position: 0 -16px; /* second row (y = -16px) for run cycle */
+  image-rendering: pixelated;   /* keeps it crisp when scaled */
+  transform: scale(3);          /* make the dog bigger */
+  transform-origin: bottom left;
+  z-index: 50;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: dog-run-right 0.6s steps(6) infinite;
+}
+
+/* flip horizontally when moving left */
+.dog-runner.is-left {
+  transform: scale(-3, 3);          /* mirror horizontally */
+  transform-origin: bottom right;   /* flip around the other side */
+}
+
+/* run cycle using 6 frames in one row (16px each → 6 * 16 = 96) */
+@keyframes dog-run-right {
+  from {
+    background-position: 0 -16px;    /* first frame of row 2 */
+  }
+  to {
+    background-position: -96px -16px; /* move left across 6 frames */
+  }
+}
+
+.dog-runner.is-sitting {
+  /* keep transform from .dog-runner or .dog-runner.is-left */
+  animation: dog-sit 0.8s steps(4) infinite;
+}
+
+/* Sit row: 3rd row (y = -32px), 4 frames (0 → -64px) */
+@keyframes dog-sit {
+  from {
+    background-position: 0 -32px;     /* first frame of row 3 */
+  }
+  to {
+    background-position: -64px -32px; /* 4 frames * 16px = 64px */
+  }
+}
+/* DOG SPEECH BUBBLE */
+.dog-dialogue {
+  position: fixed;
+  left: 40px;
+  bottom: 90px; /* will be adjusted by JS too */
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-main);
+  box-shadow: var(--shadow-subtle);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 51;
+}
+
+.dog-dialogue.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
