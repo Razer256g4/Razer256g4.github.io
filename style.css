@@ -588,3 +588,20 @@ main {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Spacing between stacked paragraphs, and accent-coloured inline links */
+.section-text + .section-text {
+  margin-top: 12px;
+}
+
+.exp-period a,
+.skill-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.exp-period a:hover,
+.skill-card a:hover {
+  text-decoration: underline;
+}

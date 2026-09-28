@@ -1,34 +1,136 @@
 // Project data – edit this array to update your Projects section.
 const projects = [
   {
-    title: "Aus Renewable Energy Analytics",
-    tag: "data",
-    badge: "Data Engineering",
+    title: "Footage to Video Pipeline",
+    tag: "ai",
+    badge: "AI",
     description:
-      "End-to-end pipeline using public Australian energy datasets, PostgreSQL, and visual dashboards.",
-    tech: ["Python", "PostgreSQL", "Streamlit", "MQTT", "Docker"],
-    repo: "https://github.com/Razer256g4/Aus-renewabl-energy-analytics.gits",
+      "Turns a folder of raw camera clips into finished 16:9 and 9:16 videos. An agent writes the edit as a plain data spec; deterministic ffmpeg code renders it, with Whisper-timed subtitles and music that ducks under dialogue.",
+    tech: ["Python", "ffmpeg", "faster-whisper", "NumPy"],
+    repo: "https://github.com/Razer256g4/footage-to-video-pipeline",
     demo: ""
   },
   {
-    title: "Network Simulator",
-    tag: "systems",
-    badge: "Systems",
+    title: "Local-First RAG",
+    tag: "ai",
+    badge: "AI",
     description:
-      "Simulated Go-Back-N ARQ and TCP Reno behaviour with visual outputs for teaching and experiments.",
-    tech: ["Python", "NumPy", "Matplotlib"],
-    repo: "https://github.com/YOUR_GITHUB_USERNAME/network-sim",
+      "Document Q&A that never sends data to a third party. FastAPI, Chroma, and llama.cpp running Mistral 7B, with loaders for PDF, DOCX, HTML, and Markdown and a React frontend.",
+    tech: ["FastAPI", "Chroma", "llama.cpp", "LangChain", "React"],
+    repo: "https://github.com/Razer256g4/RAG_BE",
     demo: ""
   },
   {
-    title: "Portfolio Website",
+    title: "SubtitleGen",
+    tag: "ai",
+    badge: "AI",
+    description:
+      "Offline desktop app that turns audio and video into SRT subtitles on a consumer GPU: source separation, loudness normalisation, and Whisper large-v3, with filters that stop the model hallucinating on silence.",
+    tech: ["PySide6", "faster-whisper", "Demucs", "CUDA"],
+    repo: "",
+    demo: ""
+  },
+  {
+    title: "Malaria Detection CNN",
+    tag: "ai",
+    badge: "AI",
+    description:
+      "TensorFlow CNN trained on the ~27.5K image NIH cell dataset, reaching over 90% validation accuracy, served through a Flask upload portal.",
+    tech: ["TensorFlow", "Keras", "Flask"],
+    repo: "https://github.com/Razer256g4/AI-project",
+    demo: ""
+  },
+  {
+    title: "PeerLink",
+    tag: "web",
+    badge: "Mobile",
+    description:
+      "Android student social app with friends, real-time chat, and a nearby students map. Student ID photos are verified on the phone with ML Kit, so the image never leaves the device.",
+    tech: ["Kotlin", "Firebase", "ML Kit", "Google Maps"],
+    repo: "https://github.com/Razer256g4/PeerLink",
+    demo: ""
+  },
+  {
+    title: "Hollis Park Cafe",
     tag: "web",
     badge: "Web",
     description:
-      "This portfolio: responsive layout, dynamic projects, and a calm visual design.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    repo: "https://github.com/Razer256g4/razer256g4.github.io",
-    demo: "https://razer256g4.github.io"
+      "Mobile-first cafe platform for customers and staff: menu, rewards with iPad QR check-in, role-based dashboards, and live staff chat.",
+    tech: ["React", "Vite", "Firebase", "Tailwind"],
+    repo: "",
+    demo: ""
+  },
+  {
+    title: "Restaurant POS",
+    tag: "web",
+    badge: "Web",
+    description:
+      "Cashier terminal and order backend, with Redux Toolkit for the cart, a FastAPI + PostgreSQL API in Docker Compose, and optional Razorpay payments.",
+    tech: ["React", "Redux Toolkit", "FastAPI", "PostgreSQL"],
+    repo: "",
+    demo: ""
+  },
+  {
+    title: "Australian NEM Energy Analytics",
+    tag: "data",
+    badge: "Data",
+    description:
+      "Near real-time pipeline over Australia's electricity market: 5 minute power and emissions readings for ~310 facilities published over MQTT, with a live Streamlit dashboard.",
+    tech: ["Python", "MQTT", "Streamlit", "pandas"],
+    repo: "https://github.com/Razer256g4/Aus-renewabl-energy-analytics",
+    demo: ""
+  },
+  {
+    title: "Diabetes Risk Classification",
+    tag: "data",
+    badge: "Data",
+    description:
+      "Five model families compared on imbalanced health survey data with repeated stratified cross-validation, scored on Macro-F1 rather than accuracy. XGBoost came out on top.",
+    tech: ["R", "caret", "XGBoost"],
+    repo: "https://github.com/Razer256g4/Final-report-stat",
+    demo: ""
+  },
+  {
+    title: "Parallel Matrix-Chain Multiplication",
+    tag: "systems",
+    badge: "Systems",
+    description:
+      "Three-matrix chain product in C with POSIX threads: lock-free row partitioning, a register-blocked inner kernel, and a benchmark sweep across sizes, thread counts, and precision.",
+    tech: ["C", "pthreads", "pandas"],
+    repo: "",
+    demo: ""
+  },
+  {
+    title: "Slime Down",
+    tag: "games",
+    badge: "Game",
+    description:
+      "GMTK Game Jam 2026 platformer where the countdown is your health bar. Placed in the top 15% for narrative and enjoyment out of ~10,500 entries, with an online leaderboard in the web build.",
+    tech: ["Godot", "GDScript", "Firestore"],
+    repo: "",
+    demo: "https://razer256g5.itch.io/slime-down",
+    demoLabel: "Play"
+  },
+  {
+    title: "Squire",
+    tag: "games",
+    badge: "Game",
+    description:
+      "Top-down action game with an adaptive score and a 16 voice audio engine, deployed to itch.io as a WebAssembly build on every push.",
+    tech: ["Godot", "GDScript", "GitHub Actions"],
+    repo: "",
+    demo: "https://razer256g5.itch.io/squire",
+    demoLabel: "Play"
+  },
+  {
+    title: "MathGame",
+    tag: "games",
+    badge: "Game",
+    description:
+      "Creature battler for desktop and Android where every attack is a maths question, generated answer first so every answer is a whole number.",
+    tech: ["Java", "libGDX", "Gradle"],
+    repo: "https://github.com/Razer256g4/MathGame",
+    demo: ""
   }
 ];
 
@@ -50,7 +152,7 @@ function createProjectCard(project) {
     </div>
     <div class="card-links">
       ${project.repo ? `<a href="${project.repo}" target="_blank" rel="noopener">Code →</a>` : ""}
-      ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener">Live demo →</a>` : ""}
+      ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener">${project.demoLabel || "Live demo"} →</a>` : ""}
     </div>
   `;
 
