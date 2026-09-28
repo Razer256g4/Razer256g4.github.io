@@ -5,23 +5,30 @@
   <title>Alok Das · Software Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Alok Das, full stack software engineer in Sydney. Production banking systems at IDFC First Bank, live client sites, local AI tools, and games." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#5b5bf0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Russo+One&family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
+  <!-- Colour blobs drifting behind everything -->
+  <div class="blobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
   <!-- NAVBAR -->
   <header class="nav">
-    <div class="nav-left">
-      <span class="logo">Alok Das</span>
-    </div>
+    <a href="#top" class="logo"><span class="logo-dot"></span>Alok Das</a>
     <nav class="nav-right">
-      <a href="#about">About</a>
+      <a href="#work">Client work</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
-      <a href="https://github.com/Razer256g4" target="_blank" rel="noopener">
-        GitHub
-      </a>
+      <a href="https://github.com/Razer256g4" target="_blank" rel="noopener" class="nav-gh">GitHub ↗</a>
     </nav>
   </header>
 
@@ -29,35 +36,40 @@
     <!-- HERO -->
     <section class="hero" id="top">
       <div class="hero-text">
-        <p class="hero-tag">Hi, I’m Alok 👋</p>
-        <h1>Full stack engineer who builds software that can stand on its own legs.</h1>
+        <p class="hero-tag"><span class="wave">👋</span> Hi, I’m Alok · Sydney</p>
+        <h1>Full stack engineer who builds software that can <span class="grad">stand on its own legs.</span></h1>
         <p class="hero-sub">
           Two years shipping production banking systems at IDFC First Bank, a Master of Computer Science from
-          the University of Sydney, and three live client sites since. Based in Sydney.
+          the University of Sydney, and three live client sites since.
         </p>
         <div class="hero-buttons">
-          <a href="#experience" class="btn primary">See my work</a>
+          <a href="#work" class="btn primary">See the live sites</a>
           <a href="#contact" class="btn ghost">Contact me</a>
+        </div>
+        <div class="stats">
+          <div class="stat s1"><strong>3</strong><span>live client sites</span></div>
+          <div class="stat s2"><strong>2 yrs</strong><span>production banking</span></div>
+          <div class="stat s3"><strong>35M+</strong><span>customers served by the bank</span></div>
         </div>
       </div>
 
       <div class="hero-card">
-        <div class="hero-gradient"></div>
         <div class="hero-info">
-          <h2>Now</h2>
-          <p>Open to full time software engineering roles in Sydney.</p>
+          <h2><span class="pulse"></span>Open to work</h2>
+          <p>Full time software engineering roles in Sydney.</p>
           <ul>
-            <li>• Web apps: React, Vue, Django, Spring Boot</li>
-            <li>• Cloud and CI/CD: Azure, Firebase, GitHub Actions</li>
-            <li>• Local AI: RAG, speech to text, video pipelines</li>
+            <li><span class="chip c-web">Web</span> React, Vue, Django, Spring Boot</li>
+            <li><span class="chip c-cloud">Cloud</span> Azure, Firebase, GitHub Actions</li>
+            <li><span class="chip c-ai">AI</span> RAG, speech to text, video pipelines</li>
+            <li><span class="chip c-game">Games</span> Godot, libGDX, game jams</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2 class="section-title">About me</h2>
+    <section id="about" class="section about">
+      <h2 class="section-title"><span class="st-mark m1"></span>About me</h2>
       <p class="section-text">
         Two years at IDFC First Bank taught me what production actually costs: Spring Boot APIs and Kafka
         pipelines behind onboarding journeys for 35 million customers. A Master of Computer Science at the
@@ -71,30 +83,24 @@
       </p>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-text">
-        Freelance client work that is live today, and two years of production banking before that.
-      </p>
+    <!-- CLIENT WORK -->
+    <section id="work" class="section">
+      <h2 class="section-title"><span class="st-mark m2"></span>Live client work</h2>
+      <p class="section-text">Three sites real people use today. Each card wears its client’s colours.</p>
 
-      <div class="experience-grid">
+      <div class="showcase">
         <!-- BIOTech Connect -->
-        <article class="exp-card">
-          <header class="exp-header">
+        <article class="client biotech">
+          <div class="client-top">
+            <img src="assets/btf-logo.png" alt="BIOTech Futures logo" class="client-logo round" width="56" height="56" />
             <div>
-              <h3 class="exp-role">BIOTech Connect</h3>
-              <p class="exp-company">University mentoring platform · Camperdown, NSW</p>
+              <h3 class="client-name">BIOTech Connect</h3>
+              <p class="client-meta">University mentoring platform · Camperdown, NSW</p>
+              <span class="client-date">Apr – Aug 2026</span>
             </div>
-            <span class="exp-tag">Apr 2026 – Aug 2026</span>
-          </header>
-
-          <p class="exp-period">
-            Freelance · Built with a 24 student team for a University of Sydney client ·
-            <a href="https://mentoring.biotechfutures.org" target="_blank" rel="noopener">Live site →</a>
-          </p>
-
-          <ul class="exp-points">
+          </div>
+          <p class="client-blurb">Freelance, built with a 24 student team for a University of Sydney client.</p>
+          <ul class="client-points">
             <li>Designed the database schema and system architecture, then built the Django 5.2 + DRF API with roles for students, mentors, supervisors, and admins.</li>
             <li>Set up the GitHub Actions pipeline: type checks and unit tests behind a 60% coverage gate, then deploys to Azure App Service on merge.</li>
             <li>Added one Redis instance covering user caching, sessions, the Channels layer, and rate limiting.</li>
@@ -102,79 +108,73 @@
             <li>Built the admin console’s People and Groups hubs in React + TypeScript, with CSV import and bulk actions.</li>
             <li>Sized the production Azure tier with Locust load tests, landing on the cheapest tier that met latency targets.</li>
           </ul>
-
-          <div class="exp-tech">
-            <span class="tech-pill">Django</span>
-            <span class="tech-pill">Vue 3</span>
-            <span class="tech-pill">React</span>
-            <span class="tech-pill">TypeScript</span>
-            <span class="tech-pill">Redis</span>
-            <span class="tech-pill">Azure</span>
+          <div class="client-foot">
+            <div class="pills">
+              <span>Django</span><span>Vue 3</span><span>React</span><span>TypeScript</span><span>Redis</span><span>Azure</span>
+            </div>
+            <a class="visit" href="https://mentoring.biotechfutures.org" target="_blank" rel="noopener">Visit live site ↗</a>
           </div>
         </article>
 
         <!-- Riverdale -->
-        <article class="exp-card">
-          <header class="exp-header">
+        <article class="client riverdale">
+          <div class="client-top">
+            <img src="assets/riverdale-logo.png" alt="Riverdale Club logo" class="client-logo wide" width="110" height="65" />
             <div>
-              <h3 class="exp-role">Riverdale Badminton Club</h3>
-              <p class="exp-company">Court booking site · Trivandrum, Kerala</p>
+              <h3 class="client-name">Riverdale Badminton Club</h3>
+              <p class="client-meta">Court booking site · Trivandrum, Kerala</p>
+              <span class="client-date">Jul 2025 – Aug 2026</span>
             </div>
-            <span class="exp-tag">Jul 2025 – Aug 2026</span>
-          </header>
-
-          <p class="exp-period">
-            Freelance · Paying client ·
-            <a href="https://riverdaleclub.com" target="_blank" rel="noopener">Live site →</a>
-          </p>
-
-          <ul class="exp-points">
+          </div>
+          <p class="client-blurb">Freelance, for a paying client. Members book and pay for courts online.</p>
+          <ul class="client-points">
             <li>Built a React 19 + TypeScript frontend on Firebase Hosting with an Express API on Cloud Functions.</li>
             <li>Enabled paid bookings with Razorpay, verifying every payment signature on the server.</li>
             <li>Kept first paint fast by lazy loading every route, so the payment SDK only loads on first click.</li>
             <li>Kept the client’s hosting bill at zero by running the whole stack on the Firebase free tier.</li>
             <li>Added a scheduled job that clears abandoned reservations.</li>
           </ul>
-
-          <div class="exp-tech">
-            <span class="tech-pill">React</span>
-            <span class="tech-pill">TypeScript</span>
-            <span class="tech-pill">Express</span>
-            <span class="tech-pill">Firebase</span>
-            <span class="tech-pill">Razorpay</span>
+          <div class="client-foot">
+            <div class="pills">
+              <span>React</span><span>TypeScript</span><span>Express</span><span>Firebase</span><span>Razorpay</span>
+            </div>
+            <a class="visit" href="https://riverdaleclub.com" target="_blank" rel="noopener">Book a court ↗</a>
           </div>
         </article>
 
         <!-- Peter McGee -->
-        <article class="exp-card">
-          <header class="exp-header">
+        <article class="client mcgee">
+          <div class="mcgee-art" role="img" aria-label="Rust 52, a painting by Peter McGee">
+            <span class="mcgee-credit">“Rust 52”, Peter McGee</span>
+          </div>
+          <div class="client-top">
             <div>
-              <h3 class="exp-role">Peter McGee Paintings</h3>
-              <p class="exp-company">Artist portfolio + CMS · Newtown, NSW</p>
+              <h3 class="client-name">Peter McGee</h3>
+              <p class="client-meta">Artist portfolio + CMS · Newtown, NSW</p>
+              <span class="client-date">Jun – Jul 2026</span>
             </div>
-            <span class="exp-tag">Jun 2026 – Jul 2026</span>
-          </header>
-
-          <p class="exp-period">
-            Freelance · Sydney artist ·
-            <a href="https://www.petermcgeepaintings.online" target="_blank" rel="noopener">Live site →</a>
-          </p>
-
-          <ul class="exp-points">
+          </div>
+          <p class="client-blurb">Freelance, for a Sydney acrylic painter.</p>
+          <ul class="client-points">
             <li>Built a Next.js 16 + TypeScript portfolio on Tailwind CSS, deployed to Vercel.</li>
             <li>Wired in Sanity CMS so the artist publishes new paintings and marks them sold without a developer.</li>
           </ul>
-
-          <div class="exp-tech">
-            <span class="tech-pill">Next.js</span>
-            <span class="tech-pill">TypeScript</span>
-            <span class="tech-pill">Tailwind</span>
-            <span class="tech-pill">Sanity</span>
-            <span class="tech-pill">Vercel</span>
+          <div class="client-foot">
+            <div class="pills">
+              <span>Next.js</span><span>TypeScript</span><span>Tailwind</span><span>Sanity</span><span>Vercel</span>
+            </div>
+            <a class="visit" href="https://www.petermcgeepaintings.online" target="_blank" rel="noopener">See the paintings ↗</a>
           </div>
         </article>
+      </div>
+    </section>
 
-        <!-- Application Engineer -->
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <h2 class="section-title"><span class="st-mark m3"></span>Before that: IDFC First Bank</h2>
+      <p class="section-text">A digital first bank in India serving 35M+ customers. Where I learned to ship safely at scale.</p>
+
+      <div class="experience-grid">
         <article class="exp-card">
           <header class="exp-header">
             <div>
@@ -184,15 +184,13 @@
             <span class="exp-tag">Jul 2022 – Jul 2024</span>
           </header>
 
-          <p class="exp-period">Full time · Digital first bank serving 35M+ customers</p>
-
           <ul class="exp-points">
             <li>Shipped salary, savings, and NRI onboarding journeys as Spring Boot REST APIs against the core banking stack.</li>
-            <li>Made bulk upload APIs 4× faster by replacing per record processing with batched writes.</li>
-            <li>Cut microservice response times by about 30% with Kafka based async messaging.</li>
+            <li>Made bulk upload APIs <mark>4× faster</mark> by replacing per record processing with batched writes.</li>
+            <li>Cut microservice response times by <mark>about 30%</mark> with Kafka based async messaging.</li>
             <li>Built a custom load balancer with retries and failover for the SMS layer, and contributed Go services to the vendor routing layer.</li>
             <li>Designed and shipped a video KYC flow inside the onboarding journey.</li>
-            <li>Shrank the legacy codebase by about 25% by pulling duplicated logic into shared modules.</li>
+            <li>Shrank the legacy codebase by <mark>about 25%</mark> by pulling duplicated logic into shared modules.</li>
           </ul>
 
           <div class="exp-tech">
@@ -204,7 +202,6 @@
           </div>
         </article>
 
-        <!-- Management Trainee -->
         <article class="exp-card">
           <header class="exp-header">
             <div>
@@ -213,8 +210,6 @@
             </div>
             <span class="exp-tag">Feb 2022 – Jun 2022</span>
           </header>
-
-          <p class="exp-period">Graduate program · Engineering track</p>
 
           <ul class="exp-points">
             <li>Wrote JUnit suites that mirrored real customer usage across happy and edge paths.</li>
@@ -232,17 +227,16 @@
 
     <!-- PROJECTS -->
     <section id="projects" class="section">
-      <div class="section-header">
-        <h2 class="section-title">Projects</h2>
-      </div>
+      <h2 class="section-title"><span class="st-mark m4"></span>Projects</h2>
+      <p class="section-text">Side projects, university work, and games. Filter by what you care about.</p>
 
       <div class="filters">
         <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="ai">AI</button>
-        <button class="filter-btn" data-filter="web">Web & Mobile</button>
-        <button class="filter-btn" data-filter="data">Data</button>
-        <button class="filter-btn" data-filter="systems">Systems</button>
-        <button class="filter-btn" data-filter="games">Games</button>
+        <button class="filter-btn f-ai" data-filter="ai">AI</button>
+        <button class="filter-btn f-web" data-filter="web">Web & Mobile</button>
+        <button class="filter-btn f-data" data-filter="data">Data</button>
+        <button class="filter-btn f-systems" data-filter="systems">Systems</button>
+        <button class="filter-btn f-games" data-filter="games">Games</button>
       </div>
 
       <div id="project-grid" class="grid"></div>
@@ -250,29 +244,29 @@
 
     <!-- SKILLS -->
     <section id="skills" class="section">
-      <h2 class="section-title">Skills</h2>
+      <h2 class="section-title"><span class="st-mark m5"></span>Skills</h2>
       <div class="skills-grid">
-        <div class="skill-card">
+        <div class="skill-card k1">
           <h3>Languages</h3>
           <p>Python, Java, TypeScript, JavaScript, C++, C#, Go, R, C, GDScript</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card k2">
           <h3>Backend</h3>
           <p>Spring Boot, Django + DRF, Django Channels, FastAPI, Node.js, Express, Kafka</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card k3">
           <h3>Frontend</h3>
           <p>React, Vue, Next.js, Redux Toolkit, React Query, TanStack Router, Zod, Tailwind CSS, Vite</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card k4">
           <h3>Cloud & DevOps</h3>
           <p>Docker, Kubernetes, AWS (Lambda, S3), Azure, Firebase, Vercel, GitHub Actions</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card k5">
           <h3>Data & Databases</h3>
           <p>PostgreSQL, MySQL, SQLite, Redis, Firestore, pandas, NumPy, Streamlit</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card k6">
           <h3>ML & AI</h3>
           <p>TensorFlow, Hugging Face Transformers, LangChain, llama.cpp, faster-whisper, Chroma, OpenCV</p>
         </div>
@@ -281,21 +275,21 @@
 
     <!-- EDUCATION -->
     <section id="education" class="section">
-      <h2 class="section-title">Education & Certifications</h2>
+      <h2 class="section-title"><span class="st-mark m6"></span>Education & Certifications</h2>
       <div class="skills-grid">
-        <div class="skill-card">
+        <div class="skill-card k2">
           <h3>Master of Computer Science</h3>
           <p>The University of Sydney · 2026<br />Data Science & AI; Networks & Distributed Systems</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card k5">
           <h3>B.Tech in Computer Science</h3>
           <p>VIT Vellore, India · 2022</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card k4">
           <h3>Microsoft Azure</h3>
           <p>
-            <a href="https://learn.microsoft.com/en-us/users/AlokDas-6660/credentials/D67DD81316E2AAF6" target="_blank" rel="noopener">Azure Fundamentals (AZ-900)</a><br />
-            <a href="https://learn.microsoft.com/en-gb/users/alokdas-6660/credentials/a730f341ddb67442" target="_blank" rel="noopener">Azure AI Fundamentals (AI-900)</a>
+            <a href="https://learn.microsoft.com/en-us/users/AlokDas-6660/credentials/D67DD81316E2AAF6" target="_blank" rel="noopener">Azure Fundamentals (AZ-900) ↗</a><br />
+            <a href="https://learn.microsoft.com/en-gb/users/alokdas-6660/credentials/a730f341ddb67442" target="_blank" rel="noopener">Azure AI Fundamentals (AI-900) ↗</a>
           </p>
         </div>
       </div>
@@ -303,46 +297,33 @@
 
     <!-- CONTACT -->
     <section id="contact" class="section">
-      <h2 class="section-title">Contact</h2>
-      <p class="section-text">
-        Hiring, a project in mind, or just want to say hi?
-      </p>
-
       <div class="contact-card">
         <p class="contact-title">Let’s build something together.</p>
         <p class="contact-sub">
-          Email is the fastest way to reach me. I’m also on GitHub and LinkedIn.
+          Hiring, a project in mind, or just want to say hi? Email is the fastest way to reach me.
         </p>
 
         <div class="contact-actions">
-          <a href="mailto:alokdas20000@gmail.com" class="btn primary">Email me at alokdas20000@gmail.com</a>
-          <a href="https://github.com/Razer256g4" target="_blank" rel="noopener" class="btn ghost">
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/alokdas256g4/" target="_blank" rel="noopener" class="btn ghost">
-            LinkedIn
-          </a>
-          <a href="https://razer256g5.itch.io" target="_blank" rel="noopener" class="btn ghost">
-            itch.io
-          </a>
+          <a href="mailto:alokdas20000@gmail.com" class="btn primary">alokdas20000@gmail.com</a>
+          <a href="https://github.com/Razer256g4" target="_blank" rel="noopener" class="btn light">GitHub</a>
+          <a href="https://www.linkedin.com/in/alokdas256g4/" target="_blank" rel="noopener" class="btn light">LinkedIn</a>
+          <a href="https://razer256g5.itch.io" target="_blank" rel="noopener" class="btn light">itch.io</a>
         </div>
       </div>
     </section>
   </main>
-  <!-- Running dog sprite -->
-  <div
-    id="dog-runner"
-    class="dog-runner"
-    aria-label="Little dog running around the screen"
-  ></div>
 
-  <!-- Dog speech bubble -->
-<div id="dog-dialogue" class="dog-dialogue">Pet me!</div>
+  <!-- Dog's corner: plays fetch with a ball -->
+  <div class="yard" aria-hidden="true">
+    <div id="ball" class="ball"></div>
+    <div id="dog" class="dog" title="Click me to throw the ball"></div>
+    <div id="dog-dialogue" class="dog-dialogue">Throw it!</div>
+  </div>
 
   <footer class="footer">
-    <p>© <span id="year"></span> Alok Das. Built with HTML, CSS, and JavaScript.</p>
+    <p>© <span id="year"></span> Alok Das. Built by hand with HTML, CSS, and JavaScript. The dog is load bearing.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>

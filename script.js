@@ -151,8 +151,8 @@ function createProjectCard(project) {
       ${project.tech.map(t => `<span class="tech-pill">${t}</span>`).join("")}
     </div>
     <div class="card-links">
-      ${project.repo ? `<a href="${project.repo}" target="_blank" rel="noopener">Code →</a>` : ""}
-      ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener">${project.demoLabel || "Live demo"} →</a>` : ""}
+      ${project.repo ? `<a href="${project.repo}" target="_blank" rel="noopener">Code ↗</a>` : ""}
+      ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener">${project.demoLabel || "Live demo"} ↗</a>` : ""}
     </div>
   `;
 
@@ -192,127 +192,195 @@ const yearSpan = document.getElementById("year");
 if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
-// ---- Running dog sprite: movement + bouncing + "pet" dialogue ----
-const dog = document.getElementById("dog-runner");
-const dogDialogue = document.getElementById("dog-dialogue");
 
-if (dog) {
-  let x = 40;
-  let y = 40;
+// ---- The dog's corner: a game of fetch ----
+// The dog lives in the bottom right corner. Every so often (or when you click
+// it) the ball gets thrown, the dog chases it down, carries it back, and sits.
+// After a few rounds with nobody playing, it naps.
+const dog = document.getElementById("dog");
+const ball = document.getElementById("ball");
+const bubble = document.getElementById("dog-dialogue");
+const yard = document.querySelector(".yard");
 
+if (dog && ball && bubble && yard) {
+  const DOG = 48;
+  const BALL = 13;
+  const MOUTH_Y = 16;
+  const RUN_SPEED = 180; // px per second
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Base velocity (px per frame)
-  const BASE_VX = 1.8;
-  const BASE_VY = 1.2;
+  const throwLines = ["Fetch!", "Again! Again!", "Best game ever.", "Woof!", "Throw it further!"];
+  const busyLines = ["I’m on it!", "Almost got it!", "Wait for me!"];
+  const napLines = ["Zzz…", "Five more minutes…"];
 
-  // Current velocity
-  let vx = BASE_VX;
-  let vy = BASE_VY;
+  let yardW = yard.clientWidth;
+  let homeX = yardW - DOG;
+  let dogX = homeX;
+  let facing = -1; // 1 = sprite's natural right, -1 = mirrored to look left
+  let ballX = homeX - BALL - 2;
+  let ballY = 0;
+  let state = "home"; // home | wait | chase | carry | nap
+  let stateAt = 0;
+  let flight = null;
+  let rounds = 0;
+  let nextAuto = 0;
+  let bubbleTimer;
 
-  const frameSize = 16;
-  const scale = 3;
-  const dogSize = frameSize * scale;
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const pick = list => list[Math.floor(Math.random() * list.length)];
 
-  const petLines = [
-    "Thanks for the pats! 🐾",
-    "Woof! That feels nice.",
-    "Best dev ever.",
-    "More pets, please.",
-    "I’ll run faster for you!"
-  ];
-
-  let hideBubbleTimeout;
-  let sitTimeout;
-  let isSitting = false;
-  function showBubble(text) {
-    if (!dogDialogue) return;
-    dogDialogue.textContent = text;
-    dogDialogue.classList.add("is-visible");
-
-    if (hideBubbleTimeout) clearTimeout(hideBubbleTimeout);
-    hideBubbleTimeout = setTimeout(() => {
-      dogDialogue.classList.remove("is-visible");
-    }, 2000);
+  function setAnim(name) {
+    dog.className = "dog " + name;
   }
 
-  function updateDogPosition() {
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-      // Only move if not sitting
-    if (!isSitting) {
-    x += vx;
-    y += vy;
-
-    
-
-    // Bounce on left/right edges
-    if (x < 0) {
-      x = 0;
-      vx = Math.abs(vx);
-      dog.classList.remove("is-left"); // face right
-    } else if (x > vw - dogSize) {
-      x = vw - dogSize;
-      vx = -Math.abs(vx);
-      dog.classList.add("is-left"); // face left
-    }
-
-    // Bounce on top/bottom edges
-    if (y < 0) {
-      y = 0;
-      vy = Math.abs(vy);
-    } else if (y > vh - dogSize - 40) {
-      y = vh - dogSize - 40;
-      vy = -Math.abs(vy);
-    }
-
-    dog.style.left = `${x}px`;
-    dog.style.bottom = `${y}px`;
-
-    // Keep bubble near the dog
-    if (dogDialogue) {
-      dogDialogue.style.left = `${x}px`;
-      dogDialogue.style.bottom = `${y + dogSize + 8}px`;
-    }
-    }
-    requestAnimationFrame(updateDogPosition);
+  function say(text, ms = 1800) {
+    bubble.textContent = text;
+    bubble.classList.add("is-visible");
+    clearTimeout(bubbleTimer);
+    bubbleTimer = setTimeout(() => bubble.classList.remove("is-visible"), ms);
   }
 
-  // Click = pet: small speed boost + dialogue
-  dog.addEventListener("click", () => {
-    // speed boost
- if (isSitting) return;
+  function draw() {
+    dog.style.transform = `translateX(${dogX}px) scaleX(${facing})`;
+    ball.style.transform = `translate(${ballX}px, ${-ballY}px)`;
+    const bw = bubble.offsetWidth || 80;
+    bubble.style.left = `${Math.max(0, Math.min(dogX + DOG / 2 - bw / 2, yardW - bw))}px`;
+  }
 
-    isSitting = true;
+  function goHome(now) {
+    state = "home";
+    stateAt = now;
+    facing = -1;
+    dogX = homeX;
+    ballX = homeX - BALL - 2;
+    ballY = 0;
+    setAnim("sit");
+    nextAuto = now + rand(8000, 13000);
+  }
 
-    // stop movement
-    vx = 0;
-    vy = 0;
+  function throwBall(now) {
+    const target = rand(6, yardW * 0.45);
+    flight = { from: ballX, to: target, start: now };
+    state = "wait";
+    stateAt = now;
+    setAnim("idle");
+  }
 
-    // switch to sitting animation
-    dog.classList.add("is-sitting");
+  // Ball path: one high arc, two little bounces, then it rolls to a stop.
+  function ballAt(t) {
+    const { from, to } = flight;
+    const roll = 12;
+    const hops = [
+      { dur: 0.7, h: 70, x0: from, x1: to },
+      { dur: 0.26, h: 16, x0: to, x1: to - roll * 0.6 },
+      { dur: 0.16, h: 5, x0: to - roll * 0.6, x1: to - roll }
+    ];
+    let acc = 0;
+    for (const hop of hops) {
+      if (t < acc + hop.dur) {
+        const p = (t - acc) / hop.dur;
+        return { x: hop.x0 + (hop.x1 - hop.x0) * p, y: 4 * hop.h * p * (1 - p), done: false };
+      }
+      acc += hop.dur;
+    }
+    return { x: to - roll, y: 0, done: true };
+  }
 
-    // little dialogue
-    const line = petLines[Math.floor(Math.random() * petLines.length)];
-    showBubble(line);
+  function onClick() {
+    const now = performance.now();
+    if (state === "home" || state === "nap") {
+      rounds = 0;
+      say(pick(throwLines));
+      throwBall(now);
+    } else {
+      say(pick(busyLines), 1200);
+    }
+  }
 
-    if (sitTimeout) clearTimeout(sitTimeout);
-    sitTimeout = setTimeout(() => {
-      // stand up and run again
-      isSitting = false;
-      dog.classList.remove("is-sitting");
+  dog.addEventListener("click", onClick);
+  ball.addEventListener("click", onClick);
 
-      // restore base speed in the direction dog is currently facing
-      const facingLeft = dog.classList.contains("is-left");
-      vx = facingLeft ? -BASE_VX : BASE_VX;
-
-      // small vertical speed so it keeps bouncing
-      vy = BASE_VY;
-    }, 5000); // sit for 5 seconds
+  window.addEventListener("resize", () => {
+    yardW = yard.clientWidth;
+    homeX = yardW - DOG;
+    if (state === "home" || state === "nap") {
+      dogX = homeX;
+      ballX = homeX - BALL - 2;
+      draw();
+    }
   });
-  requestAnimationFrame(updateDogPosition);
+
+  let last = performance.now();
+  function tick(now) {
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+
+    if (flight) {
+      const b = ballAt((now - flight.start) / 1000);
+      ballX = b.x;
+      ballY = b.y;
+      if (b.done) flight.landed = true;
+    }
+
+    switch (state) {
+      case "home":
+        if (!reduceMotion && !document.hidden && now > nextAuto) {
+          if (rounds >= 4) {
+            state = "nap";
+            stateAt = now;
+            setAnim("sleep");
+            say(pick(napLines), 2500);
+          } else {
+            rounds++;
+            throwBall(now);
+          }
+        }
+        break;
+
+      case "wait":
+        // A beat to watch the ball go before giving chase.
+        if (now - stateAt > 350) {
+          state = "chase";
+          facing = -1;
+          setAnim("run");
+        }
+        break;
+
+      case "chase": {
+        const goal = ballX - 2;
+        dogX = Math.max(goal, dogX - RUN_SPEED * dt);
+        if (dogX <= goal + 1 && flight && flight.landed) {
+          flight = null;
+          state = "carry";
+          facing = 1;
+        }
+        break;
+      }
+
+      case "carry":
+        dogX = Math.min(homeX, dogX + RUN_SPEED * dt);
+        ballX = dogX + DOG - BALL - 4;
+        ballY = MOUTH_Y;
+        if (dogX >= homeX) goHome(now);
+        break;
+
+      case "nap":
+        if (now - stateAt > 30000) {
+          rounds = 0;
+          goHome(now);
+        }
+        break;
+    }
+
+    draw();
+    requestAnimationFrame(tick);
+  }
+
+  goHome(performance.now());
+  draw();
+  setTimeout(() => say("Click me to play fetch!", 2600), 2500);
+  requestAnimationFrame(tick);
 }
-
-
 
 // Initial render
 renderProjects();
