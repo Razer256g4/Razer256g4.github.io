@@ -911,7 +911,7 @@ mark {
   image-rendering: pixelated;
   pointer-events: auto;
   cursor: pointer;
-  will-change: transform;
+  will-change: translate, rotate;
 }
 
 .dog.idle  { animation: dog-idle 0.9s steps(6) infinite; }
@@ -924,6 +924,58 @@ mark {
 @keyframes dog-sit   { from { background-position: 0 -96px; }   to { background-position: -192px -96px; } }
 @keyframes dog-sleep { from { background-position: 0 -192px; }  to { background-position: -192px -192px; } }
 
+/* Row 3 frames 0 to 3 are the leap, used for mid-air catches */
+.dog.leap { animation: dog-leap 0.45s steps(4) 1 forwards; }
+@keyframes dog-leap  { from { background-position: 0 -144px; }  to { background-position: -192px -144px; } }
+
+/* Tricks animate `rotate` only, because JS owns `translate` and `scale` */
+.dog { transform-origin: 50% 75%; touch-action: none; }
+.dog.rolling { animation: dog-idle 0.9s steps(6) infinite, dog-roll 0.8s ease-in-out 1; }
+.dog.barking { animation: dog-idle 0.3s steps(6) infinite, dog-bark 0.25s ease-in-out 4; }
+.dog.happy   { animation: dog-idle 0.6s steps(6) infinite, dog-wiggle 0.5s ease-in-out infinite; }
+
+@keyframes dog-roll   { from { rotate: 0deg; } to { rotate: -360deg; } }
+@keyframes dog-bark   { 50% { rotate: -10deg; } }
+@keyframes dog-wiggle { 25% { rotate: -5deg; } 75% { rotate: 5deg; } }
+
+.heart {
+  position: absolute;
+  color: var(--pink);
+  font-size: 15px;
+  pointer-events: none;
+  animation: heart-up 1s ease-out forwards;
+}
+
+@keyframes heart-up {
+  from { opacity: 1; transform: translateY(0) scale(0.6); }
+  to   { opacity: 0; transform: translateY(-42px) scale(1.2); }
+}
+
+.dog-alert {
+  position: absolute;
+  left: 0;
+  bottom: 50px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--amber);
+  color: #fff;
+  font: 800 12px var(--font-body);
+  box-shadow: 0 3px 8px rgba(245, 158, 11, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.dog-alert.is-visible {
+  opacity: 1;
+  animation: alert-bounce 0.6s ease-in-out infinite;
+}
+
+@keyframes alert-bounce { 50% { transform: translateY(-5px); } }
+
 .ball {
   position: absolute;
   left: 0;
@@ -934,9 +986,12 @@ mark {
   background: radial-gradient(circle at 35% 30%, #f7ff9c, #d4ec2c 55%, #9fb81a);
   box-shadow: inset -1px -2px 0 rgba(0, 0, 0, 0.15);
   pointer-events: auto;
-  cursor: pointer;
-  will-change: transform;
+  cursor: grab;
+  touch-action: none;
+  will-change: translate;
 }
+
+.ball.is-held { cursor: grabbing; }
 
 .ball::after {
   content: "";
