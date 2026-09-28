@@ -218,7 +218,7 @@ if (dog && ball && bubble && yard) {
     busy: ["I’m on it!", "Almost got it!", "Wait for me!"],
     nap: ["Zzz…", "Five more minutes…"],
     catch: ["Nice throw!", "Got it!", "Did you see that?!"],
-    invite: ["Wanna play?", "Psst… throw the ball!", "I’m a very good boy. Click me!", "You can drag the ball, you know."],
+    invite: ["Wanna play?", "Psst… throw the ball!", "I’m a very good boy. Click me!", "You can drag the ball, you know.", "I know tricks! See “How to play”."],
     pet: ["♥", "Right there!", "Best human.", "More pets please."],
     hint: ["Psst… I know tricks. Try typing “roll”.", "Type “speak” and see what happens."],
     tricks: {
@@ -527,6 +527,25 @@ if (dog && ball && bubble && yard) {
     const r = dog.getBoundingClientRect();
     facing = e.clientX > r.left + r.width / 2 + 20 ? 1 : -1;
   });
+
+  // ---- "How to play" card ----
+  const helpBtn = document.getElementById("dog-help-btn");
+  const help = document.getElementById("dog-help");
+  if (helpBtn && help) {
+    const setHelp = open => {
+      help.hidden = !open;
+      helpBtn.setAttribute("aria-expanded", String(open));
+    };
+    helpBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      setHelp(help.hidden);
+    });
+    help.addEventListener("click", e => e.stopPropagation());
+    document.addEventListener("click", () => setHelp(false));
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") setHelp(false);
+    });
+  }
 
   // ---- Inviting people to play ----
   function invite(now) {

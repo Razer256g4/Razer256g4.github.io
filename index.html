@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Russo+One&family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 <body>
   <!-- Colour blobs drifting behind everything -->
@@ -314,17 +314,29 @@
   </main>
 
   <!-- Dog's corner: plays fetch with a ball -->
-  <div class="yard" aria-hidden="true">
-    <div id="ball" class="ball"></div>
-    <div id="dog" class="dog" title="Click to play fetch, rub to pet"></div>
-    <div id="dog-alert" class="dog-alert">!</div>
-    <div id="dog-dialogue" class="dog-dialogue">Throw it!</div>
+  <div class="yard">
+    <div id="ball" class="ball" aria-hidden="true"></div>
+    <div id="dog" class="dog" title="Click to play fetch, rub to pet" aria-hidden="true"></div>
+    <div id="dog-alert" class="dog-alert" aria-hidden="true">!</div>
+    <div id="dog-dialogue" class="dog-dialogue" aria-hidden="true">Throw it!</div>
+
+    <button id="dog-help-btn" class="dog-help-btn" type="button" aria-expanded="false" aria-controls="dog-help">🐾 How to play</button>
+    <div id="dog-help" class="dog-help" role="dialog" aria-label="How to play with the dog" hidden>
+      <p class="dog-help-title">Playing with the dog</p>
+      <ul>
+        <li><span class="ico">🐶</span><span><b><span class="on-mouse">Click</span><span class="on-touch">Tap</span> the dog</b> to play fetch</span></li>
+        <li><span class="ico">🎾</span><span><b>Drag and fling the ball</b> to throw it yourself. Throw hard!</span></li>
+        <li><span class="ico">✋</span><span><b>Rub <span class="on-mouse">your mouse</span><span class="on-touch">your finger</span> over it</b> for pets</span></li>
+        <li class="on-mouse"><span class="ico">⌨️</span><span><b>Type</b> <kbd>sit</kbd> <kbd>roll</kbd> <kbd>speak</kbd> <kbd>sleep</kbd> or <kbd>fetch</kbd></span></li>
+      </ul>
+      <p class="dog-help-foot">Sometimes it catches the ball in mid-air.</p>
+    </div>
   </div>
 
   <footer class="footer">
     <p>© <span id="year"></span> Alok Das. Built by hand with HTML, CSS, and JavaScript. The dog is load bearing.</p>
   </footer>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>

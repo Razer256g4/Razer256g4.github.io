@@ -1024,6 +1024,105 @@ mark {
   transform: translateY(0);
 }
 
+/* "How to play" pill and card, above the dog's home spot */
+.dog-help-btn {
+  position: absolute;
+  right: 0;
+  top: -6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text-main);
+  font: 600 0.72rem var(--font-body);
+  box-shadow: var(--shadow-subtle);
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.dog-help-btn:hover,
+.dog-help-btn[aria-expanded="true"] {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.dog-help-btn:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+
+.dog-help {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  width: 270px;
+  padding: 14px 16px 12px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  pointer-events: auto;
+  font-size: 0.82rem;
+  animation: help-in 0.18s ease-out;
+}
+
+.dog-help[hidden] { display: none; }
+
+@keyframes help-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.dog-help-title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.dog-help ul {
+  list-style: none;
+  display: grid;
+  gap: 7px;
+}
+
+.dog-help li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+.dog-help .ico { flex: none; width: 18px; text-align: center; }
+
+.dog-help kbd {
+  display: inline-block;
+  padding: 0 5px;
+  margin: 1px 0;
+  border-radius: 5px;
+  border: 1px solid #d9d8f3;
+  border-bottom-width: 2px;
+  background: #f7f6ff;
+  font: 600 0.72rem ui-monospace, SFMono-Regular, Consolas, monospace;
+  color: var(--indigo);
+}
+
+.dog-help-foot {
+  margin-top: 9px;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+/* Mouse wording by default; touch wording, and no typing line, on touch-only devices */
+.on-touch { display: none; }
+
+@media (hover: none) {
+  .dog-help .on-touch { display: inline; }
+  .dog-help .on-mouse { display: none; }
+}
+
 @media (max-width: 560px) {
   .yard { width: 200px; right: 4px; }
 }
